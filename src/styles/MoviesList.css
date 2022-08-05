@@ -1,0 +1,18 @@
+.movies-list-wrapper{
+    display: flex;
+    gap: 1rem; 
+    padding: 1rem; 
+    overflow-x: scroll;
+  }
+::-webkit-scrollbar {  
+    height: 10px;
+}
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(190deg, #c0ca33, #00897b);
+    border-radius: 15px;
+    width: 10%;
+}
+::-webkit-scrollbar-track{
+    border-radius: 15px;
+    border: 1px solid rgb(147, 146, 133, 0.3);
+}

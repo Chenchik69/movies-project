@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex; 
+    border: 1px solid #8ed111; 
+    height: 35px;
+    border-radius: 30px;
+    margin-left: 1rem;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;  
+    padding: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    color: inherit;
+}
+
+.notActive {
+}
+
+.active {
+    background: linear-gradient(100deg, #c0ca33, #00897b);
+}
