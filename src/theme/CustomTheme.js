@@ -13,14 +13,14 @@ const CustomTheme = (mode) => ({
             secondary: {
               main: '#212121'
             },
-            background: {
-              default: '#4db6ac',
-              paper: '#4db6ac',
-              },
             text: {
               primary: grey[900],  
               secondary: grey[800],
             },
+            background: {
+              default: '#fafafa',
+              paper: '#4db6ac',
+              },
           }
         : {
             primary: {
@@ -29,13 +29,13 @@ const CustomTheme = (mode) => ({
             secondary: {
               main: '#cddc39'
             },
-            background: {
-              default: '#004d40',
-              paper: '#004d40',
-            },
             text: {
               primary: '#fff',
               secondary: grey[500],
+            },
+            background: {
+              default: '#303030',
+              paper: '#004d40',
             },
           }),
     },

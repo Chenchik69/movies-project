@@ -6,7 +6,7 @@ import MoviesSwitch from '../component/MoviesSwitch'
 import Search from "../component/Search"
 import { MoveaContext } from "../context/MoveaContext";
 
-import {Container} from '@mui/material'
+import {Container, Box, Paper, Grid} from '@mui/material'
 
 import '../styles/Home-page.css'
 
@@ -65,21 +65,37 @@ const Home = () => {
                     searchOpen={searchOpen}
                     closeSearch={closeSearch}
                 />
-                <MoviesSwitch
-                    active={active}
-                    setActive={setActive}
-                />
-                <MoviesList 
-                    loading={loading}
-                    movies={movies}
-                    baseUrl={baseUrl}
-                    active={active}
-                    setActive={setActive}
-                    setFavorite={setFavorite}
-                />
-                <SideBar
-                    movies={movies}
-                />
+                <Box>
+                    <Grid container 
+                        spacing={2}
+                        justifyContent="space-between"
+                        alignItems="stretch"  
+                        >
+                        <Grid item>
+                            <Paper elevation={6}>
+                                <SideBar
+                                    movies={movies}
+                                />
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={8}>
+                            <Paper elevation={6}>
+                                <MoviesSwitch
+                                    active={active}
+                                    setActive={setActive}
+                                />
+                                <MoviesList 
+                                    loading={loading}
+                                    movies={movies}
+                                    baseUrl={baseUrl}
+                                    active={active}
+                                    setActive={setActive}
+                                    setFavorite={setFavorite}
+                                />
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Box>
             </Container>   
         </>
         

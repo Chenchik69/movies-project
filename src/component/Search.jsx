@@ -18,7 +18,7 @@ const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
   const [searchText, setSearchText] = useState('')
   const [page, setPage] = useState(1)
   const [maxPages, setMaxPages] = useState(0)
-  const [showGenres, setShowGenres] = useState(false)
+  const [showGenres, setShowGenres] = useState(true)
   
   const searchMovies = async () => {
 
@@ -35,6 +35,7 @@ const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
         }
     }))
   setMaxPages(res?.total_pages)
+  console.log(res)
   }
   
   useEffect(() => {
@@ -121,9 +122,9 @@ const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
             <Button variant="outlined" color='secondary'  onClick={filterMovie} className='textfild-button'>Filter</Button>
             <Button variant="outlined" color='secondary'  onClick={searchMovies} >search</Button>
           </div>
-          <IconButton onClick={renderGenres}>
+          {/* <IconButton onClick={renderGenres}>
               <FilterAlt/>
-          </IconButton>
+          </IconButton> */}
           <div className="genres-wrapper" style={showGenres === false ? {display: 'none'} : {display: 'block'}} >
             <FilteredGenres
               addGenre={addGenre}
@@ -156,3 +157,5 @@ const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
 }
 
 export default Search
+
+// Сделать пагинацию при фильтрации

@@ -50,21 +50,22 @@ const SideBar = ({movies}) => {
     const closeSideBar = () => setSideBarOpen(false)
     const handleSideBar = () => {
         setSideBarOpen(true)
-  }
+    }
 
     return(
     <>  
-        <button onClick={handleSideBar}>side bar</button>
+        {/* <button onClick={handleSideBar}>side bar</button>
         <Drawer
         anchor='left'
         open={sideBarOpen}
         onClose={closeSideBar}
-        >
+        > */}
+            <h2>Popular Trailers</h2>
             {
                 isError 
                 ? <ErrorMessage/> 
-                : <iframe width="560" height="315" 
-                    src={`https://www.youtube.com/embed/${trailerKey}`}
+                : <iframe width="300" height="200" 
+                    src={`https://www.youtube.com/embed/${trailerKey}?modestbranding=1&rel=0&showinfo=0&color=white"`}
                     title="YouTube video player" 
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -72,7 +73,7 @@ const SideBar = ({movies}) => {
                 >
                 </iframe>
             }
-        </Drawer>
+        {/* </Drawer> */}
     </>
     )
 }
