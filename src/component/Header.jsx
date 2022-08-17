@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import {IconButton, AppBar, Typography, Toolbar, List} from '@mui/material';
+import {IconButton, AppBar, Typography, Toolbar, List, Container} from '@mui/material';
 import {Search } from '@mui/icons-material';
 
 import ThemeSwitch from './ThemeSwitch';
@@ -32,24 +32,26 @@ const Header = () => {
         className='header'
         position='static'
     >
-        <Toolbar
-            sx={{display:'flex', justifyContent:'space-between'}}
-        >
-            <Typography 
-                variant='h3'
-                component='span' 
+        <Container maxWidth='xl'>
+            <Toolbar
+                sx={{display:'flex', justifyContent:'space-between'}}
             >
-                Movea
-            </Typography>
-            <List>
-                <NavLink to='/' className={setActive}>Home</NavLink>
-                <NavLink to='/favorite' className={setActive}>Favorite Movies</NavLink>
-            </List>
-            <div>
-                {renderSearchIcon()}
-                <ThemeSwitch/>
-            </div>
-        </Toolbar>
+                <Typography 
+                    variant='h3'
+                    component='span' 
+                >
+                    Movea
+                </Typography>
+                <List>
+                    <NavLink to='/' className={setActive}>Home</NavLink>
+                    <NavLink to='/favorite' className={setActive}>Favorite Movies</NavLink>
+                </List>
+                <div>
+                    {renderSearchIcon()}
+                    <ThemeSwitch/>
+                </div>
+            </Toolbar>
+        </Container>
     </AppBar>
   )
 }

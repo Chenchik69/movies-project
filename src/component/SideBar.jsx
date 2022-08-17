@@ -64,7 +64,7 @@ const SideBar = ({movies}) => {
             {
                 isError 
                 ? <ErrorMessage/> 
-                : <iframe width="300" height="200" 
+                : <iframe width="400" height="250" 
                     src={`https://www.youtube.com/embed/${trailerKey}?modestbranding=1&rel=0&showinfo=0&color=white"`}
                     title="YouTube video player" 
                     frameBorder="0" 

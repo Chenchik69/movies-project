@@ -68,7 +68,7 @@ const Home = () => {
                 <Box>
                     <Grid container 
                         spacing={2}
-                        justifyContent="space-evenly"
+                        justifyContent="space-between"
                         alignItems="stretch"  
                         >
                         <Grid item>

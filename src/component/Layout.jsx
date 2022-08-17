@@ -10,11 +10,11 @@ const Layout = () => {
   return (
     <>
       <Header/>
-      {/* <Container maxWidth='lg'> */}
+      <Container maxWidth='xl'>
         <main>
             <Outlet/>
         </main>
-      {/* </Container> */}
+      </Container>
     </>
   )
 }

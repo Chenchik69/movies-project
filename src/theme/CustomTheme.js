@@ -11,7 +11,7 @@ const CustomTheme = (mode) => ({
               dark: '#aaccaa'
             },
             secondary: {
-              main: '#c7ffe1',
+              main: '#c0ca33',
               light: '#fbffff',
               dark: '#96ccaf'
             },
@@ -31,7 +31,7 @@ const CustomTheme = (mode) => ({
               dark:'#0f170f'
             },
             secondary: {
-              main: '#2b3831',
+              main: '#c0ca33',
               light:'#54625a',
               dark:'#001209',
             },

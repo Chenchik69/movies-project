@@ -1,26 +1,20 @@
 import { useState, useEffect } from 'react';
 
 import {Stack, Pagination, Drawer, IconButton, TextField, Button, Container } from '@mui/material';
-import {FilterAlt, Close, ArrowBackIos, ArrowForwardIos} from '@mui/icons-material';
-// import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Close } from '@mui/icons-material';
 
 import '../styles/Search.css'
 
 import SearchResultsList from './SearchResultsList'
-import FilteredGenres from './FilteredGenres';
 
 const keys = Object.keys(localStorage).filter(item => item.includes('_movieID'))
 
 const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
 
   const [movies, setMovies] = useState([])
-  const [filteredMovies, setFilteredMovies] = useState([])
-  const [genres, setGenres] = useState([])
   const [searchText, setSearchText] = useState('')
   const [page, setPage] = useState(1)
   const [maxPages, setMaxPages] = useState(0)
-  const [showGenres, setShowGenres] = useState(true)
   
   const searchMovies = async () => {
 
@@ -42,7 +36,7 @@ const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
   
   useEffect(() => {
     searchMovies()
-  },[page, filteredMovies])
+  },[page])
 
   const handleInputChange = (event) => {
     const {value} = event.target
@@ -60,42 +54,10 @@ const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
     setMovies(moviesUpdated)
   }
 
-  const addGenre = (id) => {
-    if (genres.length && genres.includes(id)) {
-      setGenres(prevState => prevState.filter(item => id !== item))
-    } else {
-      setGenres(prevState => [...prevState, id])
-    }
-  }
-
-  useEffect(() => {
-    if (!genres.length) {
-      setFilteredMovies([])
-    }
-  },[genres])
-
-  const filterMovie = () => {
-    if (!genres.length) {
-      return
-    }
-    const filterMovies = movies.filter((item) => {
-      const isIncludes = item.genre_ids.filter(id => genres.includes(id))
-      if (isIncludes.length) {
-        return item
-      }
-    })
-    setFilteredMovies(filterMovies)
-  }
-  
-  const renderGenres = () => {
-    setShowGenres(!showGenres)
-  }
-
   const closeSearchResult = () => {
     setMovies([])
     setSearchText('')
     setMaxPages(0)
-    setGenres([])
   }
 
   return (
@@ -121,21 +83,10 @@ const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
             >
               <Close/>
             </IconButton>
-            <Button variant="outlined" color='secondary'  onClick={filterMovie} className='textfild-button'>Filter</Button>
             <Button variant="outlined" color='secondary'  onClick={searchMovies} >search</Button>
           </div>
-          {/* <IconButton onClick={renderGenres}>
-              <FilterAlt/>
-          </IconButton> */}
-          <div className="genres-wrapper" style={showGenres === false ? {display: 'none'} : {display: 'block'}} >
-            <FilteredGenres
-              addGenre={addGenre}
-              filterMovie={filterMovie}
-              />
-          </div>
           <SearchResultsList
-            movies={filteredMovies.length ? filteredMovies : movies}
-            genres={genres}
+            movies={movies}
             searchText={searchText}
             loading={loading}
             baseUrl={baseUrl}
