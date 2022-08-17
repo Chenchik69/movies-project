@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import {Stack, Pagination, Drawer, IconButton, TextField, Button, Container } from '@mui/material';
-import {FilterAlt, Close} from '@mui/icons-material';
+import {FilterAlt, Close, ArrowBackIos, ArrowForwardIos} from '@mui/icons-material';
+// import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import '../styles/Search.css'
 

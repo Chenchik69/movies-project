@@ -58,7 +58,7 @@ const Home = () => {
 
     return(
         <>
-            <Container>
+            {/* <Container> */}
                 <Search
                     loading={loading}
                     baseUrl={baseUrl}
@@ -68,7 +68,7 @@ const Home = () => {
                 <Box>
                     <Grid container 
                         spacing={2}
-                        justifyContent="space-between"
+                        justifyContent="space-evenly"
                         alignItems="stretch"  
                         >
                         <Grid item>
@@ -96,7 +96,7 @@ const Home = () => {
                         </Grid>
                     </Grid>
                 </Box>
-            </Container>   
+            {/* </Container>    */}
         </>
         
     )

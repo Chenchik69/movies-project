@@ -27,9 +27,9 @@ function App() {
   return (
     <MoveaContext.Provider value={{mode, toggleColorMode, searchOpen, closeSearch, handleSearch}}>
       <ThemeProvider theme={theme}>
-        {/* <Paper className="App"> */}
+        <Paper className="App">
           <Routing/>
-        {/* </Paper> */}
+        </Paper>
       </ThemeProvider>
     </MoveaContext.Provider>
   );

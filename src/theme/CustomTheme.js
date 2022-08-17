@@ -6,12 +6,14 @@ const CustomTheme = (mode) => ({
       ...(mode === 'light'
         ? {
             primary: {
-              main: '#80cbc4',
-              light: '#b2dfdb',
-              dark: '#4db6ac'
+              main: '#dcffdc',
+              light: '#ffffff',
+              dark: '#aaccaa'
             },
             secondary: {
-              main: '#212121'
+              main: '#c7ffe1',
+              light: '#fbffff',
+              dark: '#96ccaf'
             },
             text: {
               primary: grey[900],  
@@ -19,15 +21,19 @@ const CustomTheme = (mode) => ({
             },
             background: {
               default: '#fafafa',
-              paper: '#4db6ac',
+              paper: '#dcffdc',
               },
           }
         : {
             primary: {
-              main:'#00695c'
+              main:'#353d35',
+              light:'#5f675f',
+              dark:'#0f170f'
             },
             secondary: {
-              main: '#cddc39'
+              main: '#2b3831',
+              light:'#54625a',
+              dark:'#001209',
             },
             text: {
               primary: '#fff',
@@ -35,7 +41,7 @@ const CustomTheme = (mode) => ({
             },
             background: {
               default: '#303030',
-              paper: '#004d40',
+              paper: '#0f170f',
             },
           }),
     },
