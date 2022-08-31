@@ -72,14 +72,15 @@ const Home = () => {
                         alignItems="stretch"  
                         >
                         <Grid item>
-                            <Paper elevation={6}>
+                            {/* <Paper elevation={6}> */}
+                            <h2 style={{padding:'1rem'}}>Popular Trailers</h2>
                                 <SideBar
                                     movies={movies}
                                 />
-                            </Paper>
+                            {/* </Paper> */}
                         </Grid>
-                        <Grid item xs={8}>
-                            <Paper elevation={6}>
+                        <Grid item xs={8} sx={{borderLeft: '1px solid #939285'}}>
+                            {/* <Paper elevation={6}> */}
                                 <MoviesSwitch
                                     active={active}
                                     setActive={setActive}
@@ -92,7 +93,26 @@ const Home = () => {
                                     setActive={setActive}
                                     setFavorite={setFavorite}
                                 />
-                            </Paper>
+                            {/* </Paper> */}
+                        </Grid>
+                        <Grid item>
+                            {/* <Paper elevation={6}> */}
+                                <SideBar
+                                    movies={movies}
+                                />
+                            {/* </Paper> */}
+                        </Grid>
+                        <Grid item xs={8} sx={{borderLeft: '1px solid #939285'}}>
+                            {/* <Paper elevation={6}> */}
+                                <MoviesList 
+                                    loading={loading}
+                                    movies={movies}
+                                    baseUrl={baseUrl}
+                                    active={active}
+                                    setActive={setActive}
+                                    setFavorite={setFavorite}
+                                />
+                            {/* </Paper> */}
                         </Grid>
                     </Grid>
                 </Box>

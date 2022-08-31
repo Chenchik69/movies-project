@@ -47,11 +47,7 @@ const Movies = () => {
     },[])
 
     const renderGenres = (genres) => {
-        return genres.map((item) => <span key={item.id}>{item.name}</span>)
-    }
-
-    const renderCreators = (created_by) => {
-        return created_by.map((item) => <span key={item.id}>{item.name}</span>)
+        return genres.map((item) => <span key={item.id}> {item.name}</span>)
     }
 
     const setFavorite = () => {
@@ -65,15 +61,20 @@ const Movies = () => {
     return (
         <div className="movie-page-wrapper">
             { loading && <Spinner/> }
-            { (!loading && !!movie) ? <div style={{backgroundImage:`url(${baseUrl}original${movie?.backdrop_path})`, backgroundSize: 'cover', backgroundPosition: 'center', color: 'white', display: 'flex', padding: '1rem', marginBottom: '1rem', minHeight: '500px'}}>
-                <MoviesCard key={movie.id} movie={movie} baseUrl={baseUrl} setFavorite={setFavorite}/>
-                <div style={{marginLeft: '1rem'}}>
-                    <span>{movie.original_title}({movie.release_date})</span> 
-                    <p>{!!movie?.genres?.length && renderGenres(movie.genres)}</p>
-                    <p>Overview: <br />{movie.overview}</p>
-                    {/* <p>{!!movie.created_by.length && renderCreators(movie.created_by)}</p> */}
+            { (!loading && !!movie) ? <div className="movie-content-wrapper">
+            <div className="bg-backdrop" style={{backgroundImage:`url(${baseUrl}original${movie?.backdrop_path})`}}>
+                <div className="movie-content">
+                    {/* <MoviesCard key={movie.id} movie={movie} baseUrl={baseUrl} setFavorite={setFavorite}/> */}
+                    <div className="bg-poster" style={{backgroundImage:`url(${baseUrl}original${movie?.poster_path})`}}></div>
+                    <div className="movie-info" style={{marginLeft: '1rem'}}>
+                        <h2 className="movie-name">{movie.original_title} ({movie.release_date})</h2>
+                        <p className="movie-genres">{!!movie?.genres?.length && renderGenres(movie.genres)}</p>
+                        <h3 style={{marginTop:'0.5rem',marginBottom:'0.5rem'}}>Overview:</h3> 
+                        <p>{movie.overview}</p>
+                    </div>
                 </div>
-            </div> : 'Movie is not defined'}
+            </div> 
+            </div>: 'Movie is not defined'}
             <Button variant="contained" onClick={goBack} className='go-back-btn'>Go Back</Button>
         </div>
         )

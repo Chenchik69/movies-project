@@ -1,5 +1,5 @@
 import {IconButton} from '@mui/material';
-import {FavoriteBorder, Favorite} from '@mui/icons-material'
+import {FavoriteBorder, Favorite, Star, StarBorder} from '@mui/icons-material'
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import '../styles/MoviesCard.css'
@@ -26,11 +26,18 @@ const MoviesCard = ({movie, baseUrl, setFavorite}) => {
         }
     }
 
+    // const addRate = (id) => {
+
+    // }
+
     return(
         <div className = 'card-wrapper'>
             <div className = 'card-popular'>
                 <IconButton style={{position: 'absolute', right: '0', top: '0', color: '#b71c1c'}} onClick={() => addFavorite(movie.id)}>
                     {movie.isFavorite ? <Favorite/> : <FavoriteBorder/>}
+                </IconButton>
+                <IconButton style={{position: 'absolute', left: '0', top: '0', color: '#ffdd00'}} onClick={() => addFavorite(movie.id)}>
+                    {movie.isFavorite ? <Star/> : <StarBorder/>}
                 </IconButton>
                 <img src={movie?.poster_path === null ? Image : `${baseUrl}w500${movie?.poster_path}`} alt="poster" className='card-img' onClick={goToMoviePage}/>
             </div>

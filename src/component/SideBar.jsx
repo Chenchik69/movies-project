@@ -53,14 +53,14 @@ const SideBar = ({movies}) => {
     }
 
     return(
-    <>  
+    <div style={{padding: '1rem'}}>  
         {/* <button onClick={handleSideBar}>side bar</button>
         <Drawer
         anchor='left'
         open={sideBarOpen}
         onClose={closeSideBar}
         > */}
-            <h2>Popular Trailers</h2>
+            
             {
                 isError 
                 ? <ErrorMessage/> 
@@ -74,7 +74,7 @@ const SideBar = ({movies}) => {
                 </iframe>
             }
         {/* </Drawer> */}
-    </>
+    </div>
     )
 }
 

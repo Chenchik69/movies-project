@@ -11,7 +11,7 @@ import './App.css';
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false)
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState('dark');
 
   const closeSearch = () => setSearchOpen(false)
   const handleSearch = () => {

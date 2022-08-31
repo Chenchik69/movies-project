@@ -2,14 +2,18 @@
     --width: 140px;
     --height: 40px;
 
-    --first-color: #243743;
-    --second-color: #28b78d;
+    --first-color: #353d35;
+    --second-color: #c0ca33;
     --text-color: white;
 
     --offset: 20px;
 
     --duration: 0.3s;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: 140px;
 }
 
 .checkbox:hover {

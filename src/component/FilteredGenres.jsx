@@ -21,7 +21,7 @@ const FilteredGenres = ({addGenre}) => {
 
   const renderGenres = () => genres.map(genre => {
     return(
-      <Grid item xs={true} key={genre.id}>
+      <Grid item xs={1.5} key={genre.id}  >
         <label className="checkbox" >
           <input type="checkbox" className="checkbox__input" onClick={() => addGenre(genre.id)}/>
           <div className="checkbox__div">
@@ -33,7 +33,7 @@ const FilteredGenres = ({addGenre}) => {
   })
   return(
     <>
-      <Grid container spacing={1}>
+      <Grid container spacing={1}  >
           {!loading && !!genres.length && renderGenres()}
       </Grid>
     </>

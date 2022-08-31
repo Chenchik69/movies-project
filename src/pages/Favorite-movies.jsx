@@ -4,6 +4,8 @@ import FilteredGenres from '../component/FilteredGenres';
 
 import { Button } from '@mui/material';
 
+import '../styles/FavoriteMovies.css'
+
 const FavoriteMovies = () => {
     const [movies,setMovies] = useState([])
     const [moviesId, setMoviesId] = useState([])
@@ -54,6 +56,9 @@ const FavoriteMovies = () => {
             return
         }
         const filterMovies = movies.filter((item) => {
+            if (!item?.genre_ids) {
+                return false
+            }
             const isIncludes = item.genre_ids.filter(id => genres.includes(id))
             if (isIncludes.length) {
                 return item
@@ -67,7 +72,6 @@ const FavoriteMovies = () => {
             <div className="genres-wrapper">
                 <FilteredGenres
                     addGenre={addGenre}
-                    filterMovie={filterMovie}
                 />
             </div>
             <Button variant="outlined" color='secondary'  onClick={filterMovie} className='textfild-button' fullWidth>Filter</Button>
@@ -82,3 +86,5 @@ const FavoriteMovies = () => {
 }
 
 export default FavoriteMovies
+
+// доделать фильтр для лучшей работы(что бы если нет подходящего фильма то показывало ворнинг какой-то)

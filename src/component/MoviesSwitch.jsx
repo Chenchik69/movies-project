@@ -8,7 +8,7 @@ const MoviesSwitch = ({active,setActive}) => {
     }
 
     return(
-        <div style={{display: 'flex', alignItems: 'center'}}>
+        <div style={{display: 'flex', alignItems: 'center', padding: '1rem'}}>
             <h2>What's Popular</h2>
             <div className="wrapper">
                 <button name='popular'
