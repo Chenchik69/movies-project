@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/MoviesCard.css'
 import Image from '../images/no_image.jpg'
 
-const MoviesCard = ({movie, baseUrl, setFavorite}) => {
+const MoviesCard = ({movie, baseUrl, setFavorite, setToastActive}) => {
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -21,9 +21,12 @@ const MoviesCard = ({movie, baseUrl, setFavorite}) => {
         setFavorite(id)
         if (movie.isFavorite) {
             localStorage.removeItem(`${id}_movieID`)
+            setToastActive(false)
         } else {
             localStorage.setItem(`${id}_movieID`, JSON.stringify({...movie, isFavorite: true}))
+            setToastActive(true)
         }
+
     }
 
     // const addRate = (id) => {

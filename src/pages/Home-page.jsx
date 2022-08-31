@@ -4,11 +4,13 @@ import SideBar from "../component/SideBar";
 import MoviesList from '../component/MoviesList'
 import MoviesSwitch from '../component/MoviesSwitch'
 import Search from "../component/Search"
+import Toast from "../component/Toast";
 import { MoveaContext } from "../context/MoveaContext";
 
 import {Container, Box, Paper, Grid} from '@mui/material'
 
 import '../styles/Home-page.css'
+
 
 
 const Home = () => {
@@ -18,6 +20,7 @@ const Home = () => {
     const [posterSizes, setPosterSizes] = useState(["w92", "w154", "w185", "w342", "w500", "w780", "original"])
     const [loading, setLoading] = useState(false)
     const [active, setActive] = useState('popular')
+    const [toastActive, setToastActive] = useState(false)
     const {searchOpen, closeSearch} = useContext(MoveaContext)
 
     const keys = Object.keys(localStorage).filter(item => item.includes('_movieID'))
@@ -50,6 +53,7 @@ const Home = () => {
             if (item.id !== id) {
                 return {...item}
             } else {
+                setToastActive(true)
                 return {...item, isFavorite: !item.isFavorite}
             }
         })
@@ -65,6 +69,11 @@ const Home = () => {
                     searchOpen={searchOpen}
                     closeSearch={closeSearch}
                 />
+                {toastActive ? <Toast
+                    setActive={setToastActive}
+                >
+                    <p>Movie is added to Favorite Movies</p>
+                </Toast> : null}
                 <Box>
                     <Grid container 
                         spacing={2}
@@ -92,25 +101,7 @@ const Home = () => {
                                     active={active}
                                     setActive={setActive}
                                     setFavorite={setFavorite}
-                                />
-                            {/* </Paper> */}
-                        </Grid>
-                        <Grid item>
-                            {/* <Paper elevation={6}> */}
-                                <SideBar
-                                    movies={movies}
-                                />
-                            {/* </Paper> */}
-                        </Grid>
-                        <Grid item xs={8} sx={{borderLeft: '1px solid #939285'}}>
-                            {/* <Paper elevation={6}> */}
-                                <MoviesList 
-                                    loading={loading}
-                                    movies={movies}
-                                    baseUrl={baseUrl}
-                                    active={active}
-                                    setActive={setActive}
-                                    setFavorite={setFavorite}
+                                    setToastActive={setToastActive}
                                 />
                             {/* </Paper> */}
                         </Grid>
