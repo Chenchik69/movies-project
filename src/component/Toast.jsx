@@ -6,7 +6,7 @@ import { Close } from '@mui/icons-material';
 import '../styles/Toast.css'
 
 
-const Toast = ({setActive, children}) => {
+const Toast = ({setToastActive, children}) => {
 
     const el = document.getElementById('root')
 
@@ -14,7 +14,7 @@ const Toast = ({setActive, children}) => {
         <div className="toast__content" onClick={e => e.stopPropagation()}>
             {children}
             <IconButton 
-                onClick={() => setActive(false)}
+                onClick={() => setToastActive(false)}
                 color='inherit'
                 size='small'
             >

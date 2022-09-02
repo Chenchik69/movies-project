@@ -11,6 +11,7 @@ const FavoriteMovies = () => {
     const [moviesId, setMoviesId] = useState([])
     const [genres, setGenres] = useState([])
     const [filteredMovies, setFilteredMovies] = useState([])
+    
 
     const keys = Object.keys(localStorage).filter(item => item.includes('_movieID'))
     const baseUrl = localStorage.getItem('secure_base_url') || 'https://image.tmdb.org/t/p/'
@@ -38,11 +39,7 @@ const FavoriteMovies = () => {
         }
       },[genres])
 
-    const removeFormFavorite = (id) => {
-        const moviesUpdated = movies.filter(item => item.id !== id)
-        setMovies(moviesUpdated)
-    }
-
+   
     const addGenre = (id) => {
         if (genres.length && genres.includes(id)) {
           setGenres(prevState => prevState.filter(item => id !== item))
@@ -66,6 +63,15 @@ const FavoriteMovies = () => {
         })
         setFilteredMovies(filterMovies)
     }
+
+    const removeFormFavorite = (id) => {
+        console.log('removeFormFavorite', id)
+
+        const moviesUpdated = movies.filter(item => item.id !== id)
+        setMovies(moviesUpdated)
+        console.log(moviesUpdated)
+    }
+
 
     return (
         <>  

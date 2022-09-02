@@ -60,6 +60,11 @@ const Home = () => {
         setMovies(moviesUpdated)
     }
 
+    useEffect(() => {
+        setTimeout(() => setToastActive(false), 4000)
+    },[toastActive])
+
+
     return(
         <>
             {/* <Container> */}
@@ -70,9 +75,9 @@ const Home = () => {
                     closeSearch={closeSearch}
                 />
                 {toastActive ? <Toast
-                    setActive={setToastActive}
+                    setToastActive={setToastActive}
                 >
-                    <p>Movie is added to Favorite Movies</p>
+                    <p>Movie added to Favorite Movies</p>
                 </Toast> : null}
                 <Box>
                     <Grid container 

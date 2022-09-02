@@ -3,9 +3,15 @@ import MoviesCard from '../component/MoviesCard';
 
 import '../styles/MoviesList.css'
 
-const MoviesList = ({loading,movies,baseUrl,setFavorite,setToastActive}) => {
+const MoviesList = ({loading,movies,baseUrl,setToastActive,setFavorite}) => {
 
-    const renderPopular = () => movies.map(movie => <MoviesCard key={movie.id} movie={movie} baseUrl={baseUrl} setFavorite={setFavorite} setToastActive={setToastActive}/>)
+    const renderPopular = () => movies.map(movie => <MoviesCard 
+        key={movie.id} 
+        movie={movie} 
+        baseUrl={baseUrl}
+        setToastActive={setToastActive}
+        setFavorite={setFavorite}
+        />)
 
     return (
             <>
