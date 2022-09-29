@@ -2,6 +2,7 @@ import Spinner from "../component/Spinner";
 import MoviesCard from '../component/MoviesCard';
 
 import '../styles/MoviesList.css'
+import { useSelector } from "react-redux";
 
 const MoviesList = ({loading,movies,baseUrl,setToastActive,setFavorite}) => {
 

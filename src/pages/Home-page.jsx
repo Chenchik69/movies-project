@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from "react";
+import {useSelector,useDispatch} from 'react-redux'
 
 import SideBar from "../component/SideBar";
 import MoviesList from '../component/MoviesList'
@@ -11,8 +12,6 @@ import {Container, Box, Paper, Grid} from '@mui/material'
 
 import '../styles/Home-page.css'
 
-
-
 const Home = () => {
     const [movies, setMovies] = useState([])
     const [page, setPage] = useState(1)
@@ -21,10 +20,13 @@ const Home = () => {
     const [loading, setLoading] = useState(false)
     const [active, setActive] = useState('popular')
     const [toastActive, setToastActive] = useState(false)
+
     const {searchOpen, closeSearch} = useContext(MoveaContext)
 
+    const dispatch = useDispatch()
+
     const keys = Object.keys(localStorage).filter(item => item.includes('_movieID'))
-   
+
     useEffect(()=>{
         const getPopular = async () => {
 
@@ -61,9 +63,15 @@ const Home = () => {
     }
 
     useEffect(() => {
+        dispatch({type: 'GET_MOVIES', payload: movies})
+    },[movies])
+
+    useEffect(() => {
         setTimeout(() => setToastActive(false), 4000)
     },[toastActive])
 
+    const moviesSelector = useSelector(movies => movies.movies)
+    // console.log(moviesSelector)
 
     return(
         <>

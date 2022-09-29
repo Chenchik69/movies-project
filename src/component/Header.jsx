@@ -43,7 +43,7 @@ const Header = () => {
                     Movea
                 </Typography>
                 <List>
-                    <NavLink to='/' className={setActive}>Home</NavLink>
+                    <NavLink to='/layout' className={setActive}>Home</NavLink>
                     <NavLink to='/favorite' className={setActive}>Favorite Movies</NavLink>
                 </List>
                 <div>

@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import MoviesList from '../component/MoviesList';
 import FilteredGenres from '../component/FilteredGenres';
 
@@ -11,6 +13,8 @@ const FavoriteMovies = () => {
     const [moviesId, setMoviesId] = useState([])
     const [genres, setGenres] = useState([])
     const [filteredMovies, setFilteredMovies] = useState([])
+
+    const dispatch = useDispatch()
     
 
     const keys = Object.keys(localStorage).filter(item => item.includes('_movieID'))
@@ -65,11 +69,8 @@ const FavoriteMovies = () => {
     }
 
     const removeFormFavorite = (id) => {
-        console.log('removeFormFavorite', id)
-
         const moviesUpdated = movies.filter(item => item.id !== id)
         setMovies(moviesUpdated)
-        console.log(moviesUpdated)
     }
 
 
