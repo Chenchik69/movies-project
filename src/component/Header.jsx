@@ -16,7 +16,7 @@ const Header = () => {
     const {handleSearch} = useContext(MoveaContext)
 
     const renderSearchIcon = () => {
-        if(location.pathname === '/') {
+        if(location.pathname === '/u/layout/home') {
             return (
                 <IconButton 
                     onClick={handleSearch}
@@ -43,8 +43,8 @@ const Header = () => {
                     Movea
                 </Typography>
                 <List>
-                    <NavLink to='/layout' className={setActive}>Home</NavLink>
-                    <NavLink to='/favorite' className={setActive}>Favorite Movies</NavLink>
+                    <NavLink to='home' className={setActive}>Home</NavLink>
+                    <NavLink to='favorite' className={setActive}>Favorite Movies</NavLink>
                 </List>
                 <div>
                     {renderSearchIcon()}

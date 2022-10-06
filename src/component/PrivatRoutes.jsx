@@ -17,6 +17,7 @@ const PrivatRoutes = () => {
       <Routes>
         <Route path='layout' element={<Layout/>}>
           <Route index element={<Home/>}/>
+          <Route path='home' element={<Home/>}/>
           <Route path='favorite' element={<FavoriteMovies/>}/>
           <Route path='movie' element={<LayoutMoviePage/>}>
             <Route path=':id' element={<Movies/>}/>

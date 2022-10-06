@@ -17,10 +17,10 @@ const MoviesCard = ({movie, baseUrl, setToastActive,setFavorite}) => {
     const [allowToRemoveMovie, setAllowToRemoveMovie] = useState(false)
 
     const goToMoviePage = () => {
-        if (location.pathname === `/movie/${movie.id}`) {
+        if (location.pathname === `/u/movie/${movie.id}`) {
             return
         } else {
-            navigate(`/movie/${movie.id}`,{replace:true, state:`${location.pathname}`});
+            navigate(`/u/movie/${movie.id}`,{replace:true, state:`${location.pathname}`});
         }
     }
 
@@ -60,7 +60,7 @@ const MoviesCard = ({movie, baseUrl, setToastActive,setFavorite}) => {
                 setAllow={setAllow}
                 removeMovie={addFavorite}
             >
-                <p>Are you sure you want to remove this movie from your Favorite Movies?</p>
+                <p>Are you sure you want to remove this movie from your Favorites?</p>
             </Modal> : null} 
             <div className = 'card-wrapper'>
                 <div className = 'card-popular'>
