@@ -9,16 +9,20 @@ const Login = () => {
     const [login, setLogin] = useState('')
     const [pass, setPass] = useState('')
     const [token, setToken] = useState('')
+    const [disableBtn, setDisableBtn] = useState(false)
+    const [error, setError] = useState(false)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     useEffect(() => {
+        setDisableBtn(true)
         const getToken = async () => {
             const tokenAuth = await (await fetch(`https://api.themoviedb.org/3/authentication/token/new?api_key=${process.env.REACT_APP_APIKEY}`)).json()
             setToken(tokenAuth?.request_token)
         }
         getToken()
+        setDisableBtn(false)
     },[])
     
     const goHome = () => {
@@ -26,6 +30,10 @@ const Login = () => {
     }
 
     const signIn = async () => {
+        if(!login.length && !pass.length) {
+            setError(true)
+            return
+        }
         const url = `https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${process.env.REACT_APP_APIKEY}&request_token=${token}&username=${login}&password=${pass}`
         const response = await fetch(url, {
             method: 'POST'
@@ -53,23 +61,27 @@ const Login = () => {
                         type="text" 
                         value={login}
                         onChange={(e) => setLogin(e.target.value)}
-                        className='user-box_input'
+                        className={error ? 'user-box_input--error' :'user-box_input'}
                         required
                     />
-                    <label className='user-box_label'>Username</label>
+                   <label className={error ? 'user-box_label--error' :'user-box_label'}>Username</label>
+                    {error ? <span className="error_text">Login is required!</span> : null}
                 </div>
                 <div className="user-box">
                     <input 
                         type="password" 
                         value={pass}
                         onChange={(e) => setPass(e.target.value)}
-                        className='user-box_input'
+                        className={error ? 'user-box_input--error' :'user-box_input'}
                         required
                     />
-                    <label className='user-box_label'>Password</label>
+                    <label className={error ? 'user-box_label--error' :'user-box_label'}>Password</label>
+                    {error ? <span className="error_text">Password is required!</span> : null}
+                </div>
+                <div className="btn_wrapper">
+                    <Button onClick={signIn} variant="outlined" color="secondary" size="large" disabled={disableBtn}>Login</Button>
                 </div>
                 
-                <Button onClick={signIn} variant="outlined" color="secondary" size="large">Login</Button>
             </Paper>
         </>
     )

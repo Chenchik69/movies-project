@@ -17,10 +17,10 @@ const MoviesCard = ({movie, baseUrl, setToastActive,setFavorite}) => {
     const [allowToRemoveMovie, setAllowToRemoveMovie] = useState(false)
 
     const goToMoviePage = () => {
-        if (location.pathname === `/u/movie/${movie.id}`) {
+        if (location.pathname === `/u/layout/movie/${movie.id}`) {
             return
         } else {
-            navigate(`/u/movie/${movie.id}`,{replace:true, state:`${location.pathname}`});
+            navigate(`/u/layout/movie/${movie.id}`,{replace:true, state:`${location.pathname}`});
         }
     }
 
