@@ -42,6 +42,7 @@ const Login = () => {
 
         const sessId = await fetch(`https://api.themoviedb.org/3/authentication/session/new?api_key=${process.env.REACT_APP_APIKEY}&request_token=${token}`, {method: 'POST'})
         const dataSession = await sessId.json()
+        dispatch({type: 'SET_SESSION_ID', payload: dataSession.session_id})
 
         const account = await fetch(`https://api.themoviedb.org/3/account?api_key=${process.env.REACT_APP_APIKEY}&session_id=${dataSession?.session_id}`)
         const dataAccount = await account.json()

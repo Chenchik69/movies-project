@@ -7,7 +7,6 @@ import '../styles/Modal.css'
 
 
 const Modal = (props) => {
-    console.log(props)
     const element = document.getElementById('root')
 
     return ReactDOM.createPortal(
