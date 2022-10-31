@@ -10,39 +10,13 @@ import "../styles/FavoriteMovies.css";
 
 const FavoriteMovies = () => {
   const [movies, setMovies] = useState([]);
-  const [moviesId, setMoviesId] = useState([]);
   const [genres, setGenres] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
 
-  const dispatch = useDispatch();
-
-  const accountId = useSelector((state) => state.user.user_details.id);
-  const sessionId = useSelector((state) => state.user.session_id);
   const favoriteMovies = useSelector((state) => state.favorite.movies);
 
-  const keys = Object.keys(localStorage).filter((item) =>
-    item.includes("_movieID")
-  );
-
-  // const data = Object.entries(localStorage);
-
-  // const moviesArray = data
-  //   .map((item) => {
-  //     if (item[0].includes("_movieID")) {
-  //       return JSON.parse(item[1]);
-  //     } else {
-  //       return null;
-  //     }
-  //   })
-  //   .filter(Boolean);
-
   useEffect(() => {
-    // ! Добавляет фильмі с редакса, но показывает их без заполненых сердечек
     setMovies(favoriteMovies);
-  }, []);
-
-  useEffect(() => {
-    setMoviesId(keys);
   }, []);
 
   useEffect(() => {

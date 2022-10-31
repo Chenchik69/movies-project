@@ -34,8 +34,6 @@ const MoviesCard = ({ movie, setToastActive, setFavorite }) => {
   };
 
   const removeFromFav = async (id) => {
-    console.log('id',id)
-    console.log('removeFromFav',removeFromFav)
     const payload = {
       "media_type": "movie",
       "media_id": id,
@@ -52,13 +50,10 @@ const MoviesCard = ({ movie, setToastActive, setFavorite }) => {
   }
 
   const addFavorite = () => {
-    // срабатывает добавление в избранное
     setFavorite(movie.id);
-    // если фильм с фаворит тру то убирает его с редакса
     if (movie.isFavorite) {
       dispatch({ type: "REMOVE_FAVORITE", payload: movie});
       dispatch({ type: "REMOVE_FAVORITE_ID", payload: movie});
-      localStorage.removeItem(`${movie.id}_movieID`);
       setModalActive(false);
       setToastActive(false);
       removeFromFav(movie.id)
@@ -66,15 +61,13 @@ const MoviesCard = ({ movie, setToastActive, setFavorite }) => {
   };
 
   const showModal = () => {
-    // если фильм в избранном то покзывать модалку, если нет то добавляет фильм физбранное
     if (movie.isFavorite) {
       setModalActive(true);
       setToastActive(false);
     } else {
       setFavorite(movie.id);
-      dispatch({ type: "ADD_FAVORITE", payload: movie })
+      dispatch({ type: "ADD_FAVORITE", payload: { ...movie, isFavorite: true } })
       dispatch({ type: "ADD_FAVORITE_ID", payload: movie.id })
-      localStorage.setItem(`${movie.id}_movieID`,JSON.stringify({ ...movie, isFavorite: true }));
       setToastActive(true);
       setModalActive(false);
     }

@@ -26,10 +26,6 @@ const Home = () => {
   const accountId = useSelector((state) => state.user.user_details.id);
   const sessionId = useSelector((state) => state.user.session_id);
   const favoriteIds = useSelector((state) => state.favorite.ids)
-
-  const keys = Object.keys(localStorage).filter((item) =>
-    item.includes("_movieID")
-  );
   
   useEffect(() => {
     const getPopular = async () => {
@@ -42,8 +38,8 @@ const Home = () => {
       ).json();
       setMovies(
         res?.results.map((item) => {
-          const isFavorite = keys.length
-            ? keys.includes(`${item.id}_movieID`)
+          const isFavorite = favoriteIds.length
+            ? favoriteIds.includes(item.id)
             : false;
           return {
             ...item,
@@ -59,8 +55,14 @@ const Home = () => {
   useEffect(() => {
     const getFavorite = async () => {
       const res = await (await fetch(`https://api.themoviedb.org/3/account/${accountId}/favorite/movies?api_key=${process.env.REACT_APP_APIKEY}&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`)).json()
-      dispatch({ type: "SET_FAVORITES", payload: res?.results });
-      dispatch({ type: "SET_FAVORITES_IDS", payload: res?.results.map((item) => item.id) });
+      const resFav = res?.results.map((item) => {
+        return {
+          ...item,
+          isFavorite: true,
+        };
+      })
+      dispatch({ type: "SET_FAVORITES", payload: resFav });
+      dispatch({ type: "SET_FAVORITES_IDS", payload: resFav.map((item) => item.id) });
     }
     getFavorite().catch(console.error);
   },[])
@@ -79,18 +81,6 @@ const Home = () => {
       },
       body: JSON.stringify(payload)
     });
-
-    // const moviesUpdated = movies.map((item) => {
-    //     if (favoriteIds.includes(item.id)) {
-    //         return {...item}
-    //     } else {
-    //         setToastActive(true)
-    //         dispatch({ type: "ADD_FAVORITE", payload: item })
-    //         dispatch({ type: "ADD_FAVORITE_ID", payload: item.id })
-    //         return {...item, isFavorite: true}
-    //     }
-    // })
-    // setMovies(moviesUpdated)
 
     // вернул что б сердечко менялось
       const moviesUpdated = movies.map((item) => {
@@ -111,9 +101,6 @@ const Home = () => {
   useEffect(() => {
     setTimeout(() => setToastActive(false), 4000);
   }, [toastActive]);
-
-  const moviesSelector = useSelector((movies) => movies.movies);
-  // console.log(moviesSelector)
 
   return (
     <>
