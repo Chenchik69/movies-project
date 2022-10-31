@@ -9,8 +9,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import "../styles/MoviesCard.css";
 import Image from "../images/no_image.jpg";
+import Config from "../configs/config";
 
-const MoviesCard = ({ movie, baseUrl, setToastActive, setFavorite }) => {
+const MoviesCard = ({ movie, setToastActive, setFavorite }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -33,11 +34,11 @@ const MoviesCard = ({ movie, baseUrl, setToastActive, setFavorite }) => {
   };
 
   const removeFromFav = async (id) => {
-    console.log('id',movie.id)
+    console.log('id',id)
     console.log('removeFromFav',removeFromFav)
     const payload = {
       "media_type": "movie",
-      "media_id": movie.id,
+      "media_id": id,
       "favorite": false,
     }
     const url = `https://api.themoviedb.org/3/account/${accountId}/favorite?api_key=${process.env.REACT_APP_APIKEY}&session_id=${sessionId}`;
@@ -60,7 +61,7 @@ const MoviesCard = ({ movie, baseUrl, setToastActive, setFavorite }) => {
       localStorage.removeItem(`${movie.id}_movieID`);
       setModalActive(false);
       setToastActive(false);
-      removeFromFav()
+      removeFromFav(movie.id)
     }
   };
 
@@ -118,7 +119,7 @@ const MoviesCard = ({ movie, baseUrl, setToastActive, setFavorite }) => {
             src={
               movie?.poster_path === null
                 ? Image
-                : `${baseUrl}w500${movie?.poster_path}`
+                : `${Config.images.base_url}w500${movie?.poster_path}`
             }
             alt="poster"
             className="card-img"

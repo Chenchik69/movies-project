@@ -4,12 +4,11 @@ import MoviesCard from '../component/MoviesCard';
 import '../styles/MoviesList.css'
 import { useSelector } from "react-redux";
 
-const MoviesList = ({loading,movies,baseUrl,setToastActive,setFavorite}) => {
+const MoviesList = ({loading,movies,setToastActive,setFavorite}) => {
 
     const renderPopular = () => movies.map(movie => <MoviesCard 
         key={movie.id} 
-        movie={movie} 
-        baseUrl={baseUrl}
+        movie={movie}
         setToastActive={setToastActive}
         setFavorite={setFavorite}
         />)

@@ -18,26 +18,27 @@ const FavoriteMovies = () => {
 
   const accountId = useSelector((state) => state.user.user_details.id);
   const sessionId = useSelector((state) => state.user.session_id);
+  const favoriteMovies = useSelector((state) => state.favorite.movies);
 
   const keys = Object.keys(localStorage).filter((item) =>
     item.includes("_movieID")
   );
-  const baseUrl =
-    localStorage.getItem("secure_base_url") || "https://image.tmdb.org/t/p/";
-  const data = Object.entries(localStorage);
 
-  const moviesArray = data
-    .map((item) => {
-      if (item[0].includes("_movieID")) {
-        return JSON.parse(item[1]);
-      } else {
-        return null;
-      }
-    })
-    .filter(Boolean);
+  // const data = Object.entries(localStorage);
+
+  // const moviesArray = data
+  //   .map((item) => {
+  //     if (item[0].includes("_movieID")) {
+  //       return JSON.parse(item[1]);
+  //     } else {
+  //       return null;
+  //     }
+  //   })
+  //   .filter(Boolean);
 
   useEffect(() => {
-    setMovies(moviesArray);
+    // ! Добавляет фильмі с редакса, но показывает их без заполненых сердечек
+    setMovies(favoriteMovies);
   }, []);
 
   useEffect(() => {
@@ -94,7 +95,6 @@ const FavoriteMovies = () => {
         Filter
       </Button>
       <MoviesList
-        baseUrl={baseUrl}
         movies={filteredMovies.length ? filteredMovies : movies}
         loading={false}
         setFavorite={removeFormFavorite}

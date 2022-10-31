@@ -7,9 +7,9 @@ function favoriteMoviesReducer(state = initialState, {type, payload}) {
     switch (type) {
       case 'SET_FAVORITES':
         return {...state, movies:[...payload]}
-      //надо деструктуризовать старый массив и добавить туда один объект 
       case 'ADD_FAVORITE':
-        // Добавляет фильм даже если он уже есть в редаксе(возможно сделать с фильтром)
+        // ! Добавляет фильм даже если он уже есть в редаксе
+        // ! Записывает фильм с полем isFavorite: false
         const addMovie = state.movies.push(payload)
         return {...state, movies:[...state.movies]}
       case 'REMOVE_FAVORITE':

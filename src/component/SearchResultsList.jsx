@@ -1,9 +1,9 @@
 import Spinner from "../component/Spinner";
 import MoviesCard from '../component/MoviesCard'
 
-const SearchResultsList = ({loading,baseUrl,setFavorite,movies}) => {
+const SearchResultsList = ({loading,setFavorite,movies}) => {
 
-    const renderSearchResult = () => movies.map(movie => <MoviesCard key={movie.id} movie={movie} baseUrl={baseUrl} setFavorite={setFavorite}/>)
+    const renderSearchResult = () => movies.map(movie => <MoviesCard key={movie.id} movie={movie} setFavorite={setFavorite}/>)
     
     return ( 
             <div style={{display: 'flex', justifyContent: 'center'}}>

@@ -9,7 +9,7 @@ import SearchResultsList from './SearchResultsList'
 
 const keys = Object.keys(localStorage).filter(item => item.includes('_movieID'))
 
-const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
+const Search = ({loading, searchOpen, closeSearch}) => {
 
   const [movies, setMovies] = useState([])
   const [searchText, setSearchText] = useState('')
@@ -89,7 +89,6 @@ const Search = ({loading, baseUrl, searchOpen, closeSearch}) => {
             movies={movies}
             searchText={searchText}
             loading={loading}
-            baseUrl={baseUrl}
             setFavorite={setFavorite}
             
           />

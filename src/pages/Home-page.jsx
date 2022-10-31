@@ -15,16 +15,6 @@ import "../styles/Home-page.css";
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const [baseUrl, setBaseUrl] = useState("");
-  const [posterSizes, setPosterSizes] = useState([
-    "w92",
-    "w154",
-    "w185",
-    "w342",
-    "w500",
-    "w780",
-    "original",
-  ]);
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState("popular");
   const [toastActive, setToastActive] = useState(false);
@@ -44,13 +34,7 @@ const Home = () => {
   useEffect(() => {
     const getPopular = async () => {
       setLoading(true);
-
-      const config = await fetch(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_APIKEY}`);
-      const configRes = await config.json()
-      setBaseUrl(configRes?.images?.secure_base_url);
-      localStorage.setItem("secure_base_url", configRes?.images?.secure_base_url);
-      setPosterSizes(configRes?.images?.poster_sizes);
-
+      
       const res = await (
         await fetch(
           `https://api.themoviedb.org/3/movie/${active}?api_key=${process.env.REACT_APP_APIKEY}&language=en-US&page=${page}`
@@ -121,9 +105,6 @@ const Home = () => {
   };
 
   useEffect(() => {
-    // if(movies.length){
-    //   return
-    // }
       dispatch({ type: "GET_MOVIES", payload: movies });
   }, [movies]);
 
@@ -139,7 +120,6 @@ const Home = () => {
       {/* <Container> */}
       <Search
         loading={loading}
-        baseUrl={baseUrl}
         searchOpen={searchOpen}
         closeSearch={closeSearch}
       />
@@ -167,7 +147,6 @@ const Home = () => {
             <MoviesList
               loading={loading}
               movies={movies}
-              baseUrl={baseUrl}
               active={active}
               setActive={setActive}
               setFavorite={setFavorite}
