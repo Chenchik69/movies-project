@@ -1,5 +1,6 @@
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import moviesReducer from './moviesReducer'
 import favoriteMoviesReducer from './favoriteMoviesReducer';
 import userReducer from './userReducer'
@@ -10,6 +11,6 @@ const rootReducer = combineReducers({
   user: userReducer,
 })
 
-const store = createStore(rootReducer, composeWithDevTools())
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store

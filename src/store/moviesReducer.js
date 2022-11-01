@@ -11,4 +11,6 @@ function moviesReducer(state = [], {type, payload}) {
   }
 }
 
+export const getMovieAction =(payload) => ({type: 'GET_MOVIES', payload})
+
 export default moviesReducer
