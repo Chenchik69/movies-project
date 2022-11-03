@@ -7,21 +7,19 @@ import FilteredGenres from "../component/FilteredGenres";
 import { Button } from "@mui/material";
 
 import "../styles/FavoriteMovies.css";
+import { addFilteredMovies } from "../store/favoriteMoviesReducer";
 
 const FavoriteMovies = () => {
-  const [movies, setMovies] = useState([]);
+  const [toastActive, setToastActive] = useState(false);
   const [genres, setGenres] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
 
+  const dispatch = useDispatch()
   const favoriteMovies = useSelector((state) => state.favorite.movies);
-
-  useEffect(() => {
-    setMovies(favoriteMovies);
-  }, []);
+  const filteredMovies = useSelector((state) => state.favorite.filteredMovies);
 
   useEffect(() => {
     if (!genres.length) {
-      setFilteredMovies([]);
+      dispatch(addFilteredMovies([]));
     }
   }, [genres]);
 
@@ -37,7 +35,7 @@ const FavoriteMovies = () => {
     if (!genres.length) {
       return;
     }
-    const filterMovies = movies.filter((item) => {
+    const filterMovies = favoriteMovies.filter((item) => {
       if (!item?.genre_ids) {
         return false;
       }
@@ -46,12 +44,11 @@ const FavoriteMovies = () => {
         return item;
       }
     });
-    setFilteredMovies(filterMovies);
+    dispatch(addFilteredMovies(filterMovies));
   };
 
   const removeFormFavorite = (id) => {
-    const moviesUpdated = movies.filter((item) => item.id !== id);
-    setMovies(moviesUpdated);
+    const moviesUpdated = favoriteMovies.filter((item) => item.id !== id);
   };
 
   return (
@@ -69,9 +66,12 @@ const FavoriteMovies = () => {
         Filter
       </Button>
       <MoviesList
-        movies={filteredMovies.length ? filteredMovies : movies}
+        // movies=
+        reducerName='favorite'
+        currentMoviesList={filteredMovies.length ? 'filteredMovies' : 'movies'}
         loading={false}
         setFavorite={removeFormFavorite}
+        setToastActive={setToastActive}
       />
     </>
   );

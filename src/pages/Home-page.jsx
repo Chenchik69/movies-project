@@ -13,9 +13,9 @@ import { Container, Box, Paper, Grid } from "@mui/material";
 import "../styles/Home-page.css";
 import { setFavoriteFetch } from "../asyncActions/favoriteMoviesRequests";
 import { getPopularFetch } from "../asyncActions/popularMoviesRequest";
+import { getPopularAction } from "../store/popularReducer";
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState("popular");
@@ -28,7 +28,7 @@ const Home = () => {
   const accountId = useSelector((state) => state.user.user_details.id);
   const sessionId = useSelector((state) => state.user.session_id);
   const favoriteIds = useSelector((state) => state.favorite.ids);
-  const moviesPopular = useSelector((state) => state.movies.movies)
+  const moviesPopular = useSelector((state) => state.popular.movies)
   
   //! сначала все крашиться, а потом приходят фильмы в редакс
   useEffect(() => {
@@ -38,8 +38,7 @@ const Home = () => {
       setLoading(false);
     }
     getPopular()
-    setMovies(moviesPopular)
-  }, [active, movies]);
+  }, [active]);
 
   useEffect(() => {
     const getFavorite = () => {
@@ -64,7 +63,7 @@ const Home = () => {
     });
 
     // вернул что б сердечко менялось
-      const moviesUpdated = movies.map((item) => {
+      const moviesUpdated = moviesPopular.map((item) => {
           if (item.id !== id) {
               return {...item}
           } else {
@@ -72,7 +71,7 @@ const Home = () => {
               return {...item, isFavorite: !item.isFavorite}
           }
       })
-      setMovies(moviesUpdated)
+      dispatch(getPopularAction(moviesUpdated))
   };
 
   useEffect(() => {
@@ -100,14 +99,14 @@ const Home = () => {
         >
           <Grid item>
             <h2 style={{ padding: "1rem" }}>Popular Trailers</h2>
-            <SideBar movies={movies} />
+            <SideBar movies={moviesPopular} />
           </Grid>
           <Grid item xs={8} sx={{ borderLeft: "1px solid #939285" }}>
             <MoviesSwitch active={active} setActive={setActive} />
             <MoviesList
               loading={loading}
-              movies={movies}
-              active={active}
+              reducerName='popular'
+              currentMoviesList='movies'
               setActive={setActive}
               setFavorite={setFavorite}
               setToastActive={setToastActive}

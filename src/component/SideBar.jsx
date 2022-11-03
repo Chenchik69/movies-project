@@ -36,7 +36,7 @@ const SideBar = ({movies}) => {
     }
 
     useEffect(() => {
-       if (movies.length) {
+       if (movies?.length) {
         getMoviesIds()
        }
     }, [movies])

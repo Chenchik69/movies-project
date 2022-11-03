@@ -1,5 +1,6 @@
 const initialState = {
   movies: [],
+  filteredMovies:[],
   ids: []
 };
 
@@ -21,6 +22,8 @@ function favoriteMoviesReducer(state = initialState, {type, payload}) {
     case 'REMOVE_FAVORITE_ID':
       const newArrIds  = state.ids.filter((id) => id !== payload.id)
       return {...state, ids: newArrIds}
+    case 'FILTERED_FAVORITE':
+      return {...state, filteredMovies:[...payload]}
     default:
       return state
   }
@@ -32,6 +35,7 @@ export const removeFavoriteAction = (payload) => ({type: 'REMOVE_FAVORITE', payl
 export const setFavoriteIdsAction = (payload) => ({type: 'SET_FAVORITES_IDS', payload})
 export const addFavoriteIdAction = (payload) => ({type: 'ADD_FAVORITE_ID', payload})
 export const removeFavoriteIdAction = (payload) => ({type: 'REMOVE_FAVORITE_ID', payload})
+export const addFilteredMovies = (payload) => ({type: 'FILTERED_FAVORITE', payload})
 
 
 export default favoriteMoviesReducer

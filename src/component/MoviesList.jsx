@@ -4,7 +4,9 @@ import MoviesCard from '../component/MoviesCard';
 import '../styles/MoviesList.css'
 import { useSelector } from "react-redux";
 
-const MoviesList = ({loading,movies,setToastActive,setFavorite}) => {
+const MoviesList = ({loading,reducerName,currentMoviesList,setToastActive,setFavorite}) => {
+
+    const movies = useSelector((state) => state[reducerName][currentMoviesList])
 
     const renderPopular = () => movies.map(movie => <MoviesCard 
         key={movie.id} 
@@ -17,8 +19,8 @@ const MoviesList = ({loading,movies,setToastActive,setFavorite}) => {
             <>
                 <div className='movies-list-wrapper'>
                     {loading && <Spinner/>}
-                    {!loading && !!movies.length && renderPopular()}
-                    {!loading && !movies.length && 'There are no selected movies yet'}
+                    {!loading && !!movies?.length && renderPopular()}
+                    {!loading && !movies?.length && 'There are no selected movies yet'}
                 </div>
             </>
     )

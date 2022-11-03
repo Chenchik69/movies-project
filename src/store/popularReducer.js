@@ -2,7 +2,7 @@ const initialState = {
   movies: [],
 };
 
-function moviesReducer(state = [], {type, payload}) {
+function popularReducer(state = [], {type, payload}) {
   switch (type) {
     case 'GET_MOVIES':
       return {...state, movies:[...payload]}
@@ -11,6 +11,6 @@ function moviesReducer(state = [], {type, payload}) {
   }
 }
 
-export const getMovieAction =(payload) => ({type: 'GET_MOVIES', payload})
+export const getPopularAction =(payload) => ({type: 'GET_MOVIES', payload})
 
-export default moviesReducer
+export default popularReducer
